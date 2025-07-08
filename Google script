@@ -1,0 +1,42 @@
+function doPost(e) {
+
+  const folderId = “https://drive.google.com/drive/folders/18rxpu_hf3fb5pOLsFJaUmMVzGefPs3y9"; //  Replace with your Google Drive folder ID
+
+  const sheetId = "https://docs.google.com/spreadsheets/d/1C3SG8PEjDV0D8xMb6X9GDFYSLql-X6wpuoQZeAn7hrE/edit?usp=drivesdk";   //  Replace with your Google Sheet ID
+
+  const sheetName = "Sheet1";        // Your sheet's name
+
+
+
+  const blob = e.parameter.screenshot || e.files?.screenshot;
+
+  const file = blob ? DriveApp.getFolderById(folderId).createFile(blob) : null;
+
+  const fileUrl = file ? file.getUrl() : "No file uploaded";
+
+
+
+  const sheet = SpreadsheetApp.openById(sheetId).getSheetByName(sheetName);
+
+  sheet.appendRow([
+
+    new Date(),
+
+    e.parameter.name,
+
+    e.parameter.phone,
+
+    e.parameter.email,
+
+    e.parameter.college,
+
+    fileUrl
+
+  ]);
+
+
+
+  return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+
+}
+
