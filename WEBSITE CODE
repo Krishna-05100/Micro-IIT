@@ -270,7 +270,7 @@
 
       try {
 
-        await fetch("YOUR_GOOGLE_SCRIPT_WEB_APP_URL", {
+        await fetch("https://script.google.com/macros/s/AKfycbyS_LMh0CagHgGCcu1jiatzC4cKNoI2Y086ebQS28TOIwpWqdO4KNR9zdEcOnWEEbRm/exec", {
 
           method: "POST",
 
